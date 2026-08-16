@@ -1,8 +1,4 @@
-import IPython
-import urllib.parse
-from google.colab import files
-
-html_code = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -118,7 +114,6 @@ html_code = """<!DOCTYPE html>
   
   #mahjong-container { position: absolute; left: 0; top: 0; transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); transform-origin: 0 0; z-index: 1; }
   
-  /* --- 3D ФИШКИ --- */
   .tile { 
     position: absolute; width: 84px; height: 102px; 
     background: linear-gradient(180deg, #ffffff 0%, #faf6ee 85%, #ede4d3 100%);
@@ -371,8 +366,6 @@ html_code = """<!DOCTYPE html>
     '<svg viewBox="0 0 100 100"><defs><radialGradient id="f36" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#f4ff81"/><stop offset="50%" stop-color="#cddc39"/><stop offset="100%" stop-color="#827717"/></radialGradient></defs><path d="M50 20 C75 20, 85 45, 85 65 C85 85, 65 95, 50 95 C35 95, 15 85, 15 65 C15 45, 25 20, 50 20 Z" fill="url(#f36)"/><ellipse cx="35" cy="50" rx="8" ry="18" fill="#fff" opacity="0.3" transform="rotate(-30 35 50)"/></svg>'
   ]; 
 
-  // --- ПОЛНОСТЬЮ НОВЫЕ КОМПАКТНЫЕ УРОВНИ ДЛЯ МОБИЛЬНЫХ ---
-  // Каждая фигура теперь строго 6 в ширину и 5 в высоту (Максимум места для фишек!)
   const shapes = [
     { name: "Башня", sym: "mirror", getMap: () => ["  ##  ", " #### ", "######", " #### ", "  ##  "] },
     { name: "Пирамида", sym: "mirror", getMap: () => ["  ##  ", "  ##  ", " #### ", "######", "######"] },
@@ -385,7 +378,6 @@ html_code = """<!DOCTYPE html>
   let tiles = []; let selectedId = null; let gridWidth = 0; let gridHeight = 0;
   let moveHistory = []; let currentScore = 0;
 
-  // ЭКОНОМИКА И ДОМИК
   let coins = parseInt(sGet('mj_coins_v1')) || 0;
   let furniture = JSON.parse(sGet('mj_furn_v1') || '{}');
 
@@ -583,7 +575,6 @@ html_code = """<!DOCTYPE html>
 
   function countAvailablePairs() { let freeTiles = tiles.filter(t => t.active && isFree(t)); let counts = {}; freeTiles.forEach(t => counts[t.type] = (counts[t.type] || 0) + 1); let pairs = 0; for(let k in counts) pairs += Math.floor(counts[k] / 2); return pairs; }
 
-  // --- ПОЛНОСТЬЮ ОБНОВЛЕННАЯ ЛОГИКА ГЕНЕРАЦИИ (КОМПАКТНЫЕ УРОВНИ) ---
   function initLevel() {
     selectedId = null; currentCombo = 0; moveHistory = []; updateInventoryUI();
     let rng = getSeededRandom(currentLevel); let diff = Math.floor((currentLevel - 1) / 10); 
@@ -593,14 +584,12 @@ html_code = """<!DOCTYPE html>
     let layout = [];
     for(let y=0; y<gridHeight; y++) { for(let x=0; x<gridWidth; x++) { if(baseMap[y][x] === '#') layout.push([x, y, 0]); } }
     
-    // Пирамиды теперь строятся выше (чтобы компенсировать уменьшенную ширину)
     let maxZ = Math.min(3 + Math.floor(diff / 2), 6);
     
     for (let z = 1; z < maxZ; z++) {
       let layer = [];
       for(let y=0; y<gridHeight; y++) {
         for(let x=0; x<gridWidth; x++) {
-          // Идеальная симметрия
           let isFirstHalf = (tmpl.sym === 'mirror') ? (x < Math.ceil(gridWidth / 2)) : (y < Math.floor(gridHeight / 2) || (gridHeight%2!==0 && y===Math.floor(gridHeight/2) && x < Math.ceil(gridWidth/2)));
           let symX = (tmpl.sym === 'mirror') ? gridWidth - 1 - x : gridWidth - 1 - x;
           let symY = (tmpl.sym === 'mirror') ? y : gridHeight - 1 - y;
@@ -640,7 +629,6 @@ html_code = """<!DOCTYPE html>
     return !(hasLeft && hasRight);
   }
 
-  // --- ОБНОВЛЕННЫЙ АЛГОРИТМ БЕЗ РАМОК ДЛЯ МАКСИМАЛЬНЫХ ФИШЕК ---
   function scaleBoard() {
     let view = document.getElementById('board-viewport'); 
     let cont = document.getElementById('mahjong-container');
@@ -650,7 +638,6 @@ html_code = """<!DOCTYPE html>
     let viewH = view.clientHeight; 
     if (viewW < 50 || viewH < 50) return;
     
-    // Рассчитываем точные физические размеры пирамиды (без пустых отступов!)
     let boardW = gridWidth * 86 + 34; 
     let boardH = gridHeight * 104 + 33; 
     
@@ -681,7 +668,6 @@ html_code = """<!DOCTYPE html>
       let el = document.createElement('div'); 
       el.className = 'tile dealing' + (t.type === 0 ? ' gold-tile' : ''); 
       el.id = 'tile-' + t.id;
-      // Новые координаты: фишки плотно прижаты к верхнему и левому краю, чтобы не было пустых мест
       el.style.left = (t.x * 86 + (t.z * 5) + 10) + 'px'; 
       el.style.top = (t.y * 104 - (t.z * 7) + 50) + 'px';
       el.style.zIndex = t.z * 10; el.innerHTML = svgs[t.type]; el.onclick = () => window.clickTile(t.id);
@@ -736,4 +722,4 @@ html_code = """<!DOCTYPE html>
   window.showShuffleAd = function() { clearTimeout(hungerTimer); if (vkPlayApp) { try { vkPlayApp.showAds({ interstitial: false, rewarded: true, callbacks: { onReward: ()=>{ shuffles+=1; updateInventoryUI(); triggerMascot('happy', 'Перемешивание!'); }, onClose: resetHunger, onError: ()=>{ triggerMascot('sad', 'Нет рекламы :('); resetHunger(); } } }); } catch(e) {} } else { let ov = document.getElementById('ad-overlay'); let t = document.getElementById('ad-timer'); ov.style.display = 'flex'; let tl = 3; t.innerText = tl; let int = setInterval(() => { tl--; t.innerText = tl; if (tl <= 0) { clearInterval(int); ov.style.display = 'none'; shuffles += 1; updateInventoryUI(); triggerMascot('happy', 'Перемешивание получено!'); resetHunger(); } }, 1000); } };
 </script>
 </body>
-</html>"""
+</html>
