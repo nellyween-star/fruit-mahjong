@@ -88,14 +88,8 @@ html_code = """<!DOCTYPE html>
   }
   @keyframes floatTitle { 0% { transform: translateY(0) scale(1) rotate(-1deg); } 100% { transform: translateY(-6px) scale(1.03) rotate(1deg); } }
   
-  .top-stats-bar {
-    display: flex; gap: 12px; margin-bottom: 16px;
-  }
-  .coin-badge {
-    background: #fff8e1; border: 2px solid #ffb300; border-radius: 16px; padding: 4px 14px;
-    font-weight: 800; color: #ff8f00; font-size: 16px; display: flex; align-items: center; gap: 6px;
-    box-shadow: 0 3px 8px rgba(255, 179, 0, 0.2);
-  }
+  .top-stats-bar { display: flex; gap: 12px; margin-bottom: 16px; }
+  .coin-badge { background: #fff8e1; border: 2px solid #ffb300; border-radius: 16px; padding: 4px 14px; font-weight: 800; color: #ff8f00; font-size: 16px; display: flex; align-items: center; gap: 6px; box-shadow: 0 3px 8px rgba(255, 179, 0, 0.2); }
   
   .menu-btn {
     background: linear-gradient(180deg, #66bb6a 0%, #43a047 100%); color: white; border: none; padding: 12px 28px;
@@ -112,67 +106,33 @@ html_code = """<!DOCTYPE html>
 
   #game-ui { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; }
   
-  #header-row { 
-    display: flex; justify-content: space-between; align-items: center; width: 100%; 
-    margin-bottom: 6px; flex-shrink: 0; gap: 4px; flex-wrap: wrap; padding-right: 46px; 
-  }
-  .stats-badge { 
-    background: #ffffff; padding: 4px 10px; border-radius: 10px; font-weight: 800; color: #4a148c; font-size: 13px; 
-    box-shadow: 0 2px 6px rgba(74, 20, 140, 0.08); border: 1px solid #e1bee7; white-space: nowrap; 
-  }
+  #header-row { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 6px; flex-shrink: 0; gap: 4px; flex-wrap: wrap; padding-right: 46px; }
+  .stats-badge { background: #ffffff; padding: 4px 10px; border-radius: 10px; font-weight: 800; color: #4a148c; font-size: 13px; box-shadow: 0 2px 6px rgba(74, 20, 140, 0.08); border: 1px solid #e1bee7; white-space: nowrap; }
   #ui-panel { display: flex; gap: 4px; justify-content: flex-start; flex-wrap: wrap; }
-  .btn { 
-    color: white; border: none; padding: 6px 10px; border-radius: 10px; font-size: 12px; cursor: pointer; 
-    transition: 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-family: 'Nunito', sans-serif; font-weight: 900; 
-    text-align: center; white-space: nowrap; text-shadow: 1px 1px 1px rgba(0,0,0,0.25); 
-  }
+  .btn { color: white; border: none; padding: 6px 10px; border-radius: 10px; font-size: 12px; cursor: pointer; transition: 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-family: 'Nunito', sans-serif; font-weight: 900; text-align: center; white-space: nowrap; text-shadow: 1px 1px 1px rgba(0,0,0,0.25); }
   .btn:active { transform: translateY(3px); box-shadow: 0 0 0 transparent !important; }
   
-  #board-viewport { 
-    flex-grow: 1; width: 100%; height: calc(100% - 70px);
-    border: 3px solid #7e57c2; 
-    background: radial-gradient(circle at 50% 40%, #5c6bc0 0%, #3949ab 60%, #283593 100%); 
-    border-radius: 16px; display: flex; justify-content: center; align-items: center; overflow: hidden; 
-    box-shadow: inset 0 4px 20px rgba(0,0,0,0.4); position: relative; 
-  }
-  #board-viewport::before { 
-    content: ''; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%; 
-    background: repeating-conic-gradient(from 0deg, transparent 0deg 15deg, rgba(255,255,255,0.025) 15deg 30deg); 
-    animation: rotateBg 140s linear infinite; pointer-events: none; z-index: 0; 
-  }
+  #board-viewport { flex-grow: 1; width: 100%; height: calc(100% - 70px); border: 3px solid #7e57c2; background: radial-gradient(circle at 50% 40%, #5c6bc0 0%, #3949ab 60%, #283593 100%); border-radius: 16px; display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: inset 0 4px 20px rgba(0,0,0,0.4); position: relative; }
+  #board-viewport::before { content: ''; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%; background: repeating-conic-gradient(from 0deg, transparent 0deg 15deg, rgba(255,255,255,0.025) 15deg 30deg); animation: rotateBg 140s linear infinite; pointer-events: none; z-index: 0; }
   @keyframes rotateBg { 100% { transform: rotate(360deg); } }
   
-  #mahjong-container { 
-    position: absolute; 
-    left: 0;
-    top: 0;
-    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); 
-    transform-origin: 0 0; 
-    z-index: 1; 
-  }
+  #mahjong-container { position: absolute; left: 0; top: 0; transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); transform-origin: 0 0; z-index: 1; }
   
+  /* --- 3D ФИШКИ --- */
   .tile { 
     position: absolute; width: 84px; height: 102px; 
     background: linear-gradient(180deg, #ffffff 0%, #faf6ee 85%, #ede4d3 100%);
     border-radius: 12px; cursor: pointer; display: flex; justify-content: center; align-items: center; 
     transition: transform 0.16s ease, filter 0.2s ease, box-shadow 0.16s ease; box-sizing: border-box;
-    box-shadow: 
-      0 1px 0 #d7cbba, 0 2px 0 #cbbea9, 0 3px 0 #beaf99,
-      0 4px 0 #b1a189, 0 5px 0 #a49279, 0 6px 0 #958369,
-      0 8px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 0 #d7cbba, 0 2px 0 #cbbea9, 0 3px 0 #beaf99, 0 4px 0 #b1a189, 0 5px 0 #a49279, 0 6px 0 #958369, 0 8px 12px rgba(0,0,0,0.4);
     border: 1px solid rgba(255,255,255,0.9);
   }
-  .tile::after { 
-    content: ''; position: absolute; top: 4px; bottom: 4px; left: 4px; right: 4px; 
-    border: 1.5px solid rgba(206, 147, 216, 0.4); border-radius: 8px; pointer-events: none; 
-  }
+  .tile::after { content: ''; position: absolute; top: 4px; bottom: 4px; left: 4px; right: 4px; border: 1.5px solid rgba(206, 147, 216, 0.4); border-radius: 8px; pointer-events: none; }
 
   .tile.gold-tile {
     background: linear-gradient(180deg, #fffde7 0%, #fff9c4 40%, #ffe082 100%) !important;
     border: 2px solid #ffd54f !important;
-    box-shadow: 
-      0 1px 0 #ffca28, 0 3px 0 #ffb300, 0 5px 0 #ffa000, 0 6px 0 #ff8f00,
-      0 10px 18px rgba(255, 179, 0, 0.6), 0 0 15px rgba(255, 235, 59, 0.8) !important;
+    box-shadow: 0 1px 0 #ffca28, 0 3px 0 #ffb300, 0 5px 0 #ffa000, 0 6px 0 #ff8f00, 0 10px 18px rgba(255, 179, 0, 0.6), 0 0 15px rgba(255, 235, 59, 0.8) !important;
     animation: goldShimmer 2s infinite alternate;
   }
   .tile.gold-tile::after { border-color: rgba(255, 215, 0, 0.9) !important; }
@@ -185,9 +145,7 @@ html_code = """<!DOCTYPE html>
   .tile.selected { 
     background: linear-gradient(180deg, #fffde7 0%, #fff9c4 100%);
     transform: translateY(-6px) scale(1.02); z-index: 1000 !important;
-    box-shadow: 
-      0 1px 0 #ffe082, 0 3px 0 #ffd54f, 0 5px 0 #ffca28, 0 7px 0 #ffb300,
-      0 12px 18px rgba(255, 179, 0, 0.45), 0 0 16px rgba(255, 235, 59, 0.6);
+    box-shadow: 0 1px 0 #ffe082, 0 3px 0 #ffd54f, 0 5px 0 #ffca28, 0 7px 0 #ffb300, 0 12px 18px rgba(255, 179, 0, 0.45), 0 0 16px rgba(255, 235, 59, 0.6);
     border-color: #fff59d;
   }
   .tile.selected::after { border-color: rgba(255, 179, 0, 0.7); }
@@ -196,11 +154,7 @@ html_code = """<!DOCTYPE html>
   .tile.hinted { animation: hintGlow 0.6s infinite alternate !important; z-index: 3000 !important; }
   @keyframes hintGlow { 0% { transform: translateY(0); filter: brightness(1); } 100% { transform: translateY(-6px); filter: brightness(1.2); box-shadow: 0 7px 0 #ffca28, 0 0 20px #ffeb3b; } }
   
-  .floating-score { 
-    position: absolute; font-family: 'Fredoka', sans-serif; font-size: 32px; color: #fff; 
-    -webkit-text-stroke: 2px #f57f17; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4)); 
-    z-index: 4000; pointer-events: none; animation: floatScore 1s ease-out forwards; 
-  }
+  .floating-score { position: absolute; font-family: 'Fredoka', sans-serif; font-size: 32px; color: #fff; -webkit-text-stroke: 2px #f57f17; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4)); z-index: 4000; pointer-events: none; animation: floatScore 1s ease-out forwards; }
   @keyframes floatScore { 0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; } 25% { transform: translate(-50%, -15px) scale(1.2); opacity: 1; } 100% { transform: translate(-50%, -60px) scale(1); opacity: 0; } }
 
   #mascot-container { position: absolute; bottom: 6px; right: 8px; z-index: 5000; display: flex; flex-direction: column; align-items: center; pointer-events: none; transform: scale(0.85); transform-origin: bottom right; }
@@ -217,16 +171,8 @@ html_code = """<!DOCTYPE html>
   @keyframes mascotShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px) rotate(-4deg); } 75% { transform: translateX(4px) rotate(4deg); } }
   @keyframes mascotChew { 0% { transform: scale(1, 1); } 100% { transform: scale(1.06, 0.94); } }
   
-  .speech-bubble { 
-    background: #ffffff; border-radius: 14px; padding: 4px 10px; font-weight: 800; color: #4a148c; font-size: 13px; 
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2); margin-bottom: 6px; text-align: center; position: relative; 
-    opacity: 0; transform: translateY(6px) scale(0.85); transition: all 0.2s cubic-bezier(0.3, 1.5, 0.5, 1); 
-    border: 1.5px solid #ba68c8;
-  }
-  .speech-bubble::after { 
-    content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); 
-    border-width: 6px 6px 0; border-style: solid; border-color: #ba68c8 transparent transparent transparent; 
-  }
+  .speech-bubble { background: #ffffff; border-radius: 14px; padding: 4px 10px; font-weight: 800; color: #4a148c; font-size: 13px; box-shadow: 0 3px 10px rgba(0,0,0,0.2); margin-bottom: 6px; text-align: center; position: relative; opacity: 0; transform: translateY(6px) scale(0.85); transition: all 0.2s cubic-bezier(0.3, 1.5, 0.5, 1); border: 1.5px solid #ba68c8; }
+  .speech-bubble::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); border-width: 6px 6px 0; border-style: solid; border-color: #ba68c8 transparent transparent transparent; }
   .speech-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
   
   .combo-text { position: absolute; left: 50%; top: 38%; transform: translate(-50%, -50%); font-family: 'Fredoka', sans-serif; font-size: 36px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 3px 0 #ad1457, 0 8px 20px rgba(0,0,0,0.5); pointer-events: none; z-index: 9999; animation: floatUpFade 1.1s forwards; }
@@ -296,7 +242,7 @@ html_code = """<!DOCTYPE html>
       
       <div style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); z-index:10; text-align:center;">
         <svg viewBox="0 0 100 100" width="85" height="85" style="filter:drop-shadow(0 4px 6px rgba(0,0,0,0.2));">
-          <circle cx="20" cy="30" r="14" fill="#212121"/><circle cx="80" cy="30" r="14" fill="#212121"/><ellipse cx="50" cy="58" rx="46" ry="36" fill="#ffffff" stroke="#eceff1" stroke-width="2"/><ellipse cx="26" cy="62" rx="7" ry="4" fill="#ff8a80" opacity="0.6"/><ellipse cx="74" cy="62" rx="7" ry="4" fill="#ff8a80" opacity="0.6"/><ellipse cx="32" cy="52" rx="10" ry="13" fill="#212121" transform="rotate(-20 32 52)"/><ellipse cx="68" cy="52" rx="10" ry="13" fill="#212121" transform="rotate(20 68 52)"/><circle cx="32" cy="48" r="4.5" fill="#ffffff"/><circle cx="35" cy="54" r="1.5" fill="#ffffff"/><circle cx="68" cy="48" r="4.5" fill="#ffffff"/><circle cx="65" cy="54" r="1.5" fill="#ffffff"/><ellipse cx="50" cy="62" rx="3.5" ry="2" fill="#212121"/><path d="M44 66 Q50 80 56 66 Z" fill="#ff5252" stroke="#212121" stroke-width="2"/><ellipse cx="25" cy="74" rx="9" ry="11" fill="#212121" transform="rotate(-30 25 74)"/><ellipse cx="75" cy="74" rx="9" ry="11" fill="#212121" transform="rotate(30 75 74)"/>
+          <circle cx="20" cy="30" r="14" fill="#212121"/><circle cx="80" cy="30" r="14" fill="#212121"/><ellipse cx="50" cy="58" rx="46" ry="36" fill="#ffffff" stroke="#eceff1" stroke-width="2"/><ellipse cx="26" cy="62" rx="7" ry="4" fill="#ff8a80" opacity="0.6"/><ellipse cx="74" cy="62" rx="7" ry="4" fill="#ff8a80" opacity="0.6"/><ellipse cx="32" cy="52" rx="10" ry="13" fill="#212121" transform="rotate(-20 32 52)"/><ellipse cx="68" cy="52" rx="10" ry="13" fill="#212121" transform="rotate(20 68 52)"/><g id="m-eyes-normal"><circle cx="32" cy="48" r="4.5" fill="#ffffff"/><circle cx="35" cy="54" r="1.5" fill="#ffffff"/><circle cx="68" cy="48" r="4.5" fill="#ffffff"/><circle cx="65" cy="54" r="1.5" fill="#ffffff"/></g><g id="m-eyes-happy" class="hidden"><path d="M25 50 Q32 40 39 50" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M61 50 Q68 40 75 50" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/></g><g id="m-eyes-sad" class="hidden"><path d="M26 48 Q32 46 38 52" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M74 48 Q68 46 62 52" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="35" cy="58" r="2.5" fill="#40c4ff"/><circle cx="65" cy="58" r="2.5" fill="#40c4ff"/></g><ellipse cx="50" cy="62" rx="3.5" ry="2" fill="#212121"/><path id="m-mouth-normal" d="M46 68 Q48 70 50 68 Q52 70 54 68" stroke="#212121" stroke-width="2" fill="none" stroke-linecap="round"/><path id="m-mouth-happy" class="hidden" d="M44 66 Q50 80 56 66 Z" fill="#ff5252" stroke="#212121" stroke-width="2"/><ellipse cx="25" cy="74" rx="9" ry="11" fill="#212121" transform="rotate(-30 25 74)"/><ellipse cx="75" cy="74" rx="9" ry="11" fill="#212121" transform="rotate(30 75 74)"/>
         </svg>
       </div>
     </div>
@@ -387,7 +333,7 @@ html_code = """<!DOCTYPE html>
   }
 
   const svgs = [
-    '<svg viewBox="0 0 100 100"><defs><radialGradient id="fgold" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="40%" stop-color="#ffca28"/><stop offset="100%" stop-color="#ff8f00"/></radialGradient></defs><path d="M50 20 C65 10, 85 25, 85 50 C85 75, 65 85, 50 85 C35 85, 15 75, 15 50 C15 25, 35 10, 50 20 Z" fill="url(#fgold)" stroke="#ff6f00" stroke-width="2"/><path d="M50 20 Q50 8 55 5" stroke="#ffe082" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M55 5 Q75 0 80 15 Q65 20 55 5 Z" fill="#ffeb3b"/><ellipse cx="35" cy="40" rx="8" ry="18" fill="#fff" opacity="0.6" transform="rotate(-30 35 40)"/></svg>', // 0 ЗОЛОТОЙ
+    '<svg viewBox="0 0 100 100"><defs><radialGradient id="fgold" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="40%" stop-color="#ffca28"/><stop offset="100%" stop-color="#ff8f00"/></radialGradient></defs><path d="M50 20 C65 10, 85 25, 85 50 C85 75, 65 85, 50 85 C35 85, 15 75, 15 50 C15 25, 35 10, 50 20 Z" fill="url(#fgold)" stroke="#ff6f00" stroke-width="2"/><path d="M50 20 Q50 8 55 5" stroke="#ffe082" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M55 5 Q75 0 80 15 Q65 20 55 5 Z" fill="#ffeb3b"/><ellipse cx="35" cy="40" rx="8" ry="18" fill="#fff" opacity="0.6" transform="rotate(-30 35 40)"/></svg>',
     '<svg viewBox="0 0 100 100"><defs><radialGradient id="f1" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#ff8a80"/><stop offset="50%" stop-color="#e53935"/><stop offset="100%" stop-color="#b71c1c"/></radialGradient></defs><path d="M50 20 C65 10, 85 25, 85 50 C85 75, 65 85, 50 85 C35 85, 15 75, 15 50 C15 25, 35 10, 50 20 Z" fill="url(#f1)"/><path d="M50 20 Q50 8 55 5" stroke="#4e342e" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M55 5 Q75 0 80 15 Q65 20 55 5 Z" fill="#43a047"/><ellipse cx="35" cy="40" rx="8" ry="18" fill="#fff" opacity="0.35" transform="rotate(-30 35 40)"/></svg>',
     '<svg viewBox="0 0 100 100"><defs><radialGradient id="f2" cx="35%" cy="35%" r="65%"><stop offset="0%" stop-color="#ffb74d"/><stop offset="60%" stop-color="#f57c00"/><stop offset="100%" stop-color="#e65100"/></radialGradient></defs><circle cx="50" cy="55" r="38" fill="url(#f2)"/><path d="M50 17 Q65 0 80 17 Q60 25 50 17 Z" fill="#4caf50"/><path d="M30 45 A1 1 0 0 0 32 45 M35 35 A1 1 0 0 0 37 35 M45 30 A1 1 0 0 0 47 30 M40 50 A1 1 0 0 0 42 50 M25 55 A1 1 0 0 0 27 55 M50 25 A1 1 0 0 0 52 25" stroke="#bf360c" stroke-width="2" stroke-linecap="round" opacity="0.4"/><ellipse cx="35" cy="40" rx="10" ry="18" fill="#fff" opacity="0.3" transform="rotate(-40 35 40)"/></svg>',
     '<svg viewBox="0 0 100 100"><defs><radialGradient id="f3" cx="30%" cy="30%" r="70%"><stop offset="0%" stop-color="#ff5252"/><stop offset="70%" stop-color="#d32f2f"/><stop offset="100%" stop-color="#b71c1c"/></radialGradient></defs><path d="M50 90 C85 60, 90 35, 75 20 C60 5, 50 20, 50 20 C50 20, 40 5, 25 20 C10 35, 15 60, 50 90 Z" fill="url(#f3)"/><path d="M30 40 L30 42 M50 35 L50 37 M70 40 L70 42 M40 55 L40 57 M60 55 L60 57 M50 70 L50 72 M35 65 L35 67 M65 65 L65 67" stroke="#ffeb3b" stroke-width="3" stroke-linecap="round"/><path d="M50 10 Q65 5 70 20 Q50 15 50 30 Q50 15 30 20 Q35 5 50 10 Z" fill="#2e7d32"/><ellipse cx="35" cy="35" rx="6" ry="14" fill="#fff" opacity="0.35" transform="rotate(-30 35 35)"/></svg>',
@@ -425,14 +371,15 @@ html_code = """<!DOCTYPE html>
     '<svg viewBox="0 0 100 100"><defs><radialGradient id="f36" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#f4ff81"/><stop offset="50%" stop-color="#cddc39"/><stop offset="100%" stop-color="#827717"/></radialGradient></defs><path d="M50 20 C75 20, 85 45, 85 65 C85 85, 65 95, 50 95 C35 95, 15 85, 15 65 C15 45, 25 20, 50 20 Z" fill="url(#f36)"/><ellipse cx="35" cy="50" rx="8" ry="18" fill="#fff" opacity="0.3" transform="rotate(-30 35 50)"/></svg>'
   ]; 
 
-  // СПЕЦИАЛЬНЫЕ КОМПАКТНЫЕ ФИГУРЫ ДЛЯ ТЕЛЕФОНА (Максимум 8 в ширину)
+  // --- ПОЛНОСТЬЮ НОВЫЕ КОМПАКТНЫЕ УРОВНИ ДЛЯ МОБИЛЬНЫХ ---
+  // Каждая фигура теперь строго 6 в ширину и 5 в высоту (Максимум места для фишек!)
   const shapes = [
-    { name: "Крепость", sym: "mirror", getMap: () => [" ###### ", " ######## ", " ######## ", " ######## ", " ######## ", " ###### "] },
-    { name: "Песочные часы", sym: "mirror", getMap: () => [" ######## ", "  ####  ", "   ##   ", "   ##   ", "  ####  ", " ######## "] },
-    { name: "Ромб", sym: "mirror", getMap: () => ["   ##   ", "  ####  ", " ###### ", " ###### ", "  ####  ", "   ##   "] },
-    { name: "Крест", sym: "mirror", getMap: () => ["   ##   ", "   ##   ", " ######## ", " ######## ", "   ##   ", "   ##   "] },
-    { name: "Восьмерка", sym: "mirror", getMap: () => [" ###### ", " ##  ## ", " ###### ", " ###### ", " ##  ## ", " ###### "] },
-    { name: "Зигзаг", sym: "point", getMap: () => [" ###### ", " ##     ", " ###### ", " ###### ", "     ## ", " ###### "] }
+    { name: "Башня", sym: "mirror", getMap: () => ["  ##  ", " #### ", "######", " #### ", "  ##  "] },
+    { name: "Пирамида", sym: "mirror", getMap: () => ["  ##  ", "  ##  ", " #### ", "######", "######"] },
+    { name: "Крест", sym: "mirror", getMap: () => ["  ##  ", "######", "######", "######", "  ##  "] },
+    { name: "Ромб", sym: "mirror", getMap: () => ["  ##  ", " #### ", " #### ", " #### ", "  ##  "] },
+    { name: "Бант", sym: "point", getMap: () => ["##  ##", " #### ", "  ##  ", " #### ", "##  ##"] },
+    { name: "Квадрат", sym: "mirror", getMap: () => [" #### ", "######", "######", "######", " #### "] }
   ];
 
   let tiles = []; let selectedId = null; let gridWidth = 0; let gridHeight = 0;
@@ -463,115 +410,41 @@ html_code = """<!DOCTYPE html>
   function getSeededRandom(seed) { return function() { var t = seed += 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; } }
 
   let audioCtx = null;
-  function initAudio() { 
-      try { const AC = window.AudioContext || window.webkitAudioContext; if (!audioCtx && AC) audioCtx = new AC(); if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); } catch(e) {} 
-  }
-  
-  function playTone(freq, type, duration, vol) { 
-      if (!audioCtx) return; 
-      try { 
-        const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); 
-        osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime); 
-        gain.gain.setValueAtTime(vol, audioCtx.currentTime); 
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration); 
-        osc.connect(gain); gain.connect(audioCtx.destination); 
-        osc.start(); osc.stop(audioCtx.currentTime + duration); 
-      } catch(e) {} 
-  }
-
-  function playTileClack() {
-      if (isSfxMuted || !audioCtx) return;
-      try {
-          let t = audioCtx.currentTime;
-          let osc = audioCtx.createOscillator();
-          let gain = audioCtx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(600, t);
-          osc.frequency.exponentialRampToValueAtTime(120, t + 0.04);
-          gain.gain.setValueAtTime(0.2, t);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
-          osc.connect(gain); gain.connect(audioCtx.destination);
-          osc.start(t); osc.stop(t + 0.04);
-      } catch(e) {}
-  }
+  function initAudio() { try { const AC = window.AudioContext || window.webkitAudioContext; if (!audioCtx && AC) audioCtx = new AC(); if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); } catch(e) {} }
+  function playTone(freq, type, duration, vol) { if (!audioCtx) return; try { const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime); gain.gain.setValueAtTime(vol, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration); osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + duration); } catch(e) {} }
+  function playTileClack() { if (isSfxMuted || !audioCtx) return; try { let t = audioCtx.currentTime; let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain(); osc.type = 'triangle'; osc.frequency.setValueAtTime(600, t); osc.frequency.exponentialRampToValueAtTime(120, t + 0.04); gain.gain.setValueAtTime(0.2, t); gain.gain.exponentialRampToValueAtTime(0.001, t + 0.04); osc.connect(gain); gain.connect(audioCtx.destination); osc.start(t); osc.stop(t + 0.04); } catch(e) {} }
 
   window.sfx = { 
       click: () => { playTileClack(); }, 
       error: () => { if(isSfxMuted) return; playTone(160, 'sawtooth', 0.12, 0.04); }, 
       undo: () => { if(isSfxMuted) return; playTone(520, 'sine', 0.08, 0.08); setTimeout(() => playTone(360, 'sine', 0.12, 0.08), 50); },
       coin: () => { if(isSfxMuted) return; playTone(987, 'triangle', 0.08, 0.1); setTimeout(() => playTone(1318, 'triangle', 0.15, 0.1), 60); },
-      match: (c) => { 
-          if(isSfxMuted) return; 
-          let baseNotes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
-          let f = baseNotes[Math.min(c - 1, baseNotes.length - 1)];
-          playTone(f, 'triangle', 0.12, 0.12); 
-          setTimeout(() => playTone(f * 1.25, 'sine', 0.18, 0.08), 70); 
-      },
+      match: (c) => { if(isSfxMuted) return; let baseNotes = [523.25, 659.25, 783.99, 1046.50, 1318.51]; let f = baseNotes[Math.min(c - 1, baseNotes.length - 1)]; playTone(f, 'triangle', 0.12, 0.12); setTimeout(() => playTone(f * 1.25, 'sine', 0.18, 0.08), 70); },
       hint: () => { if(isSfxMuted) return; playTone(880, 'sine', 0.08, 0.08); setTimeout(() => playTone(1760, 'sine', 0.2, 0.12), 80); },
       shuffle: () => { if(isSfxMuted) return; [260, 320, 390, 470, 390, 320].forEach((f, i) => setTimeout(() => playTone(f, 'triangle', 0.04, 0.06), i * 30)); },
-      win: () => {
-          if (isSfxMuted) return;
-          [523.25, 659.25, 783.99, 1046.50].forEach((f, i) => {
-              setTimeout(() => playTone(f, 'triangle', 0.25, 0.12), i * 110);
-          });
-      }
+      win: () => { if (isSfxMuted) return; [523.25, 659.25, 783.99, 1046.50].forEach((f, i) => { setTimeout(() => playTone(f, 'triangle', 0.25, 0.12), i * 110); }); }
   };
 
   let mascotTimer, hungerTimer;
   function triggerMascot(emotion, textMessage, fruitSvgHtml = null) {
-    ['normal', 'happy', 'sad'].forEach(e => { 
-        let el = document.getElementById('m-eyes-'+e); if(el) el.classList.add('hidden'); 
-        let m = document.getElementById('m-mouth-'+e); if(m) m.classList.add('hidden'); 
-    });
-
-    let wrap = document.getElementById('mascot-wrapper'); 
-    let bubble = document.getElementById('mascot-bubble'); 
-    let slot = document.getElementById('mascot-fruit-slot');
+    ['normal', 'happy', 'sad'].forEach(e => { let el = document.getElementById('m-eyes-'+e); if(el) el.classList.add('hidden'); let m = document.getElementById('m-mouth-'+e); if(m) m.classList.add('hidden'); });
+    let wrap = document.getElementById('mascot-wrapper'); let bubble = document.getElementById('mascot-bubble'); let slot = document.getElementById('mascot-fruit-slot');
     wrap.className = ''; 
-    
-    if (emotion === 'eat' || emotion === 'happy') { 
-        document.getElementById('m-eyes-happy').classList.remove('hidden'); 
-        document.getElementById('m-mouth-happy').classList.remove('hidden'); 
-        wrap.classList.add(emotion === 'eat' ? 'mascot-eat' : 'mascot-jump'); 
-        if(fruitSvgHtml) { slot.innerHTML = fruitSvgHtml; slot.classList.add('eating'); } 
-    } else if (emotion === 'sad') { 
-        document.getElementById('m-eyes-sad').classList.remove('hidden'); 
-        document.getElementById('m-mouth-sad').classList.remove('hidden'); 
-        wrap.classList.add('mascot-sad'); slot.classList.remove('eating'); 
-    } else { 
-        document.getElementById('m-eyes-normal').classList.remove('hidden'); 
-        document.getElementById('m-mouth-normal').classList.remove('hidden'); 
-        wrap.classList.add('mascot-idle'); slot.classList.remove('eating'); 
-    }
-    
+    if (emotion === 'eat' || emotion === 'happy') { document.getElementById('m-eyes-happy').classList.remove('hidden'); document.getElementById('m-mouth-happy').classList.remove('hidden'); wrap.classList.add(emotion === 'eat' ? 'mascot-eat' : 'mascot-jump'); if(fruitSvgHtml) { slot.innerHTML = fruitSvgHtml; slot.classList.add('eating'); } } 
+    else if (emotion === 'sad') { document.getElementById('m-eyes-sad').classList.remove('hidden'); document.getElementById('m-mouth-sad').classList.remove('hidden'); wrap.classList.add('mascot-sad'); slot.classList.remove('eating'); } 
+    else { document.getElementById('m-eyes-normal').classList.remove('hidden'); document.getElementById('m-mouth-normal').classList.remove('hidden'); wrap.classList.add('mascot-idle'); slot.classList.remove('eating'); }
     if (textMessage) { bubble.innerHTML = textMessage; bubble.classList.add('show'); } else { bubble.classList.remove('show'); }
-    if (emotion !== 'idle') { 
-      clearTimeout(mascotTimer); 
-      mascotTimer = setTimeout(() => triggerMascot('idle'), emotion==='eat' ? 1800 : 1500); 
-    }
+    if (emotion !== 'idle') { clearTimeout(mascotTimer); mascotTimer = setTimeout(() => triggerMascot('idle'), emotion==='eat' ? 1800 : 1500); }
   }
 
-  function resetHunger() { 
-    clearTimeout(hungerTimer); 
-    hungerTimer = setTimeout(() => { 
-      triggerMascot('sad', ["Урр... животик сводит!", "Я голодная! 🐼", "Хочу кушать!", "Где мои фрукты?"][Math.floor(Math.random()*4)]); 
-    }, 7000); 
-  }
+  function resetHunger() { clearTimeout(hungerTimer); hungerTimer = setTimeout(() => { triggerMascot('sad', ["Урр... животик сводит!", "Я голодная! 🐼", "Хочу кушать!", "Где мои фрукты?"][Math.floor(Math.random()*4)]); }, 7000); }
 
   let currentLevel = parseInt(sGet('mj_lvl_v11')) || 1;
   if (!sGet('mj_hints_v11')) { sSet('mj_hints_v11', 5); sSet('mj_shuffles_v11', 3); sSet('mj_undos_v11', 3); }
   let hints = parseInt(sGet('mj_hints_v11')); let shuffles = parseInt(sGet('mj_shuffles_v11')); let undos = parseInt(sGet('mj_undos_v11'));
 
-  function updateInventoryUI() { 
-    document.getElementById('hint-count').innerText = hints; 
-    document.getElementById('shuffle-count').innerText = shuffles; 
-    document.getElementById('undo-count').innerText = undos; 
-    sSet('mj_hints_v11', hints); sSet('mj_shuffles_v11', shuffles); sSet('mj_undos_v11', undos); 
-  }
-  function updateMenuDisplay() { 
-    document.getElementById('menu-level').innerText = "Уровень: " + currentLevel; 
-    updateCoinsUI();
-  }
+  function updateInventoryUI() { document.getElementById('hint-count').innerText = hints; document.getElementById('shuffle-count').innerText = shuffles; document.getElementById('undo-count').innerText = undos; sSet('mj_hints_v11', hints); sSet('mj_shuffles_v11', shuffles); sSet('mj_undos_v11', undos); }
+  function updateMenuDisplay() { document.getElementById('menu-level').innerText = "Уровень: " + currentLevel; updateCoinsUI(); }
 
   const rewards = [{h:2,s:1,u:1},{h:1,s:2,u:1},{h:3,s:1,u:2},{h:1,s:3,u:2},{h:4,s:2,u:3},{h:2,s:4,u:3},{h:10,s:10,u:10}];
   let streak = parseInt(sGet('mj_st_v11')) || 0; let lastClaimDate = sGet('mj_lc_v11') || ""; let canClaimToday = false;
@@ -597,43 +470,25 @@ html_code = """<!DOCTYPE html>
 
   function spawnJuice(rect1, rect2, isGold = false) {
       let vp = document.getElementById('board-viewport').getBoundingClientRect();
-      let cx = ((rect1.left + rect2.left) / 2) - vp.left + (rect1.width / 2);
-      let cy = ((rect1.top + rect2.top) / 2) - vp.top + (rect1.height / 2);
+      let cx = ((rect1.left + rect2.left) / 2) - vp.left + (rect1.width / 2); let cy = ((rect1.top + rect2.top) / 2) - vp.top + (rect1.height / 2);
       const colors = isGold ? ['#ffd700', '#ffeb3b', '#ff9800', '#fff'] : ['#ff5252', '#ffeb3b', '#66bb6a', '#42a5f5', '#ab47bc', '#ffa726'];
-      
       for(let i=0; i<12; i++) {
-          let drop = document.createElement('div');
-          drop.style.position = 'absolute';
-          let size = Math.random() * 8 + 4;
-          drop.style.width = size + 'px'; drop.style.height = size + 'px';
-          drop.style.borderRadius = '50%';
-          drop.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-          drop.style.zIndex = '3000'; drop.style.left = cx + 'px'; drop.style.top = cy + 'px';
+          let drop = document.createElement('div'); drop.style.position = 'absolute';
+          let size = Math.random() * 8 + 4; drop.style.width = size + 'px'; drop.style.height = size + 'px'; drop.style.borderRadius = '50%';
+          drop.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)]; drop.style.zIndex = '3000'; drop.style.left = cx + 'px'; drop.style.top = cy + 'px';
           document.getElementById('board-viewport').appendChild(drop);
-
-          let angle = Math.random() * Math.PI * 2;
-          let dist = Math.random() * 75 + 25;
+          let angle = Math.random() * Math.PI * 2; let dist = Math.random() * 75 + 25;
           let tx = Math.cos(angle) * dist; let ty = Math.sin(angle) * dist;
-
-          drop.animate([
-              { transform: 'translate(0,0) scale(1)', opacity: 1 },
-              { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
-          ], { duration: 400 + Math.random()*300, easing: 'cubic-bezier(0.25, 1, 0.5, 1)' }).onfinish = () => drop.remove();
+          drop.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }], { duration: 400 + Math.random()*300, easing: 'cubic-bezier(0.25, 1, 0.5, 1)' }).onfinish = () => drop.remove();
       }
   }
 
   function showFloatingScore(r1, r2, text, isGold = false) {
       let vp = document.getElementById('board-viewport').getBoundingClientRect();
-      let x = ((r1.left + r2.left) / 2) - vp.left + 42; 
-      let y = ((r1.top + r2.top) / 2) - vp.top;
-      
+      let x = ((r1.left + r2.left) / 2) - vp.left + 42; let y = ((r1.top + r2.top) / 2) - vp.top;
       let floatEl = document.createElement('div'); floatEl.className = 'floating-score'; 
-      if(isGold) {
-        floatEl.style.webkitTextStroke = '2px #b78103';
-        floatEl.style.color = '#ffd700';
-      }
-      floatEl.innerText = text;
-      floatEl.style.left = x + 'px'; floatEl.style.top = y + 'px';
+      if(isGold) { floatEl.style.webkitTextStroke = '2px #b78103'; floatEl.style.color = '#ffd700'; }
+      floatEl.innerText = text; floatEl.style.left = x + 'px'; floatEl.style.top = y + 'px';
       document.getElementById('board-viewport').appendChild(floatEl); setTimeout(() => floatEl.remove(), 1000);
   }
 
@@ -643,25 +498,16 @@ html_code = """<!DOCTYPE html>
     
     let isGold = (tileType === 0);
     if(isGold) {
-        coins += 25;
-        updateCoinsUI();
-        window.sfx.coin();
-        showFloatingScore(rect1, rect2, '+25 🪙', true);
-        triggerMascot('happy', 'Золото! В домик! 🪙');
+        coins += 25; updateCoinsUI(); window.sfx.coin(); showFloatingScore(rect1, rect2, '+25 🪙', true); triggerMascot('happy', 'Золото! В домик! 🪙');
     } else {
-        window.sfx.match(currentCombo);
-        let earned = 100 * currentCombo;
-        currentScore += earned; 
-        document.getElementById('score-display').innerText = `Очки: ${currentScore}`;
-        showFloatingScore(rect1, rect2, '+' + earned);
+        window.sfx.match(currentCombo); let earned = 100 * currentCombo; currentScore += earned; 
+        document.getElementById('score-display').innerText = `Очки: ${currentScore}`; showFloatingScore(rect1, rect2, '+' + earned);
         if (currentCombo >= 2) { 
-            let el = document.createElement('div'); el.className = 'combo-text'; 
-            el.innerText = "Комбо x" + currentCombo; 
+            let el = document.createElement('div'); el.className = 'combo-text'; el.innerText = "Комбо x" + currentCombo; 
             document.getElementById('board-viewport').appendChild(el); setTimeout(() => el.remove(), 1100); 
         }
         triggerMascot('eat', praises[Math.min(currentCombo - 1, praises.length - 1)], svgs[tileType]);
     }
-    
     if(rect1 && rect2) spawnJuice(rect1, rect2, isGold);
   }
 
@@ -669,38 +515,28 @@ html_code = """<!DOCTYPE html>
       let typeCounts = {}; targetTilesArray.forEach(t => typeCounts[t.type] = (typeCounts[t.type] || 0) + 1);
       let fruitPairs = []; for (let t in typeCounts) { let count = Math.floor(typeCounts[t] / 2); for(let i=0; i<count; i++) fruitPairs.push(parseInt(t)); }
       shuffleArray(fruitPairs, rngFunc);
-
       let bestPairs = []; let minLeftovers = Infinity;
 
       for(let attempt=0; attempt<20; attempt++) {
           let simTiles = targetTilesArray.map(t => ({ id: t.id, x: t.x, y: t.y, z: t.z, active: true }));
           let currentPairs = []; let stuck = false;
-
           function simIsFree(tile) {
               if (simTiles.some(t => t.active && t.x === tile.x && t.y === tile.y && t.z > tile.z)) return false;
               let hasLeft = simTiles.some(t => t.active && t.y === tile.y && t.z === tile.z && t.x === tile.x - 1);
               let hasRight = simTiles.some(t => t.active && t.y === tile.y && t.z === tile.z && t.x === tile.x + 1);
               return !(hasLeft && hasRight);
           }
-
           while (simTiles.some(t => t.active)) {
               let freeTiles = simTiles.filter(t => t.active && simIsFree(t));
               if (freeTiles.length < 2) { stuck = true; break; }
-              shuffleArray(freeTiles, rngFunc);
-              freeTiles[0].active = false; freeTiles[1].active = false; currentPairs.push([freeTiles[0].id, freeTiles[1].id]);
+              shuffleArray(freeTiles, rngFunc); freeTiles[0].active = false; freeTiles[1].active = false; currentPairs.push([freeTiles[0].id, freeTiles[1].id]);
           }
-
           if (!stuck) { bestPairs = currentPairs; minLeftovers = 0; break; } 
           else {
               let activeCount = simTiles.filter(t => t.active).length;
-              if (activeCount < minLeftovers) {
-                  minLeftovers = activeCount; bestPairs = [...currentPairs];
-                  let leftovers = simTiles.filter(t => t.active);
-                  for(let i=0; i<leftovers.length; i+=2) { if (leftovers[i+1]) bestPairs.push([leftovers[i].id, leftovers[i+1].id]); }
-              }
+              if (activeCount < minLeftovers) { minLeftovers = activeCount; bestPairs = [...currentPairs]; let leftovers = simTiles.filter(t => t.active); for(let i=0; i<leftovers.length; i+=2) { if (leftovers[i+1]) bestPairs.push([leftovers[i].id, leftovers[i+1].id]); } }
           }
       }
-
       bestPairs.forEach((pair, index) => {
           let fType = fruitPairs[index] !== undefined ? fruitPairs[index] : fruitPairs[0];
           let t1 = targetTilesArray.find(t => t.id === pair[0]); let t2 = targetTilesArray.find(t => t.id === pair[1]);
@@ -716,8 +552,7 @@ html_code = """<!DOCTYPE html>
         let t = targetTilesArray[i]; if (!t.active) continue;
         let sameBelow = targetTilesArray.find(b => b.active && b.x === t.x && b.y === t.y && b.z < t.z && b.type === t.type);
         if (sameBelow) {
-          conflict = true;
-          let cands = targetTilesArray.filter(c => c.active && c.type !== t.type && (c.x !== t.x || c.y !== t.y));
+          conflict = true; let cands = targetTilesArray.filter(c => c.active && c.type !== t.type && (c.x !== t.x || c.y !== t.y));
           if (cands.length > 0) { let cand = cands[Math.floor(rngFunc() * cands.length)]; let temp = t.type; t.type = cand.type; cand.type = temp; }
           break;
         }
@@ -725,89 +560,48 @@ html_code = """<!DOCTYPE html>
     }
   }
 
-  window.startGame = function() { 
-    initAudio(); document.getElementById('main-menu').classList.add('hidden'); document.getElementById('game-ui').classList.remove('hidden'); 
-    currentScore = 0; moveHistory = []; document.getElementById('score-display').innerText = `Очки: ${currentScore}`;
-    triggerMascot('happy', 'Начнем кушать!'); resetHunger(); initLevel(); 
-  };
-  
-  window.goToMenu = function() { 
-      document.getElementById('game-ui').classList.add('hidden'); 
-      document.getElementById('main-menu').classList.remove('hidden'); 
-      document.getElementById('victory-overlay').style.display = 'none'; 
-      updateMenuDisplay(); clearTimeout(hungerTimer); 
-  };
+  window.startGame = function() { initAudio(); document.getElementById('main-menu').classList.add('hidden'); document.getElementById('game-ui').classList.remove('hidden'); currentScore = 0; moveHistory = []; document.getElementById('score-display').innerText = `Очки: ${currentScore}`; triggerMascot('happy', 'Начнем кушать!'); resetHunger(); initLevel(); };
+  window.goToMenu = function() { document.getElementById('game-ui').classList.add('hidden'); document.getElementById('main-menu').classList.remove('hidden'); document.getElementById('victory-overlay').style.display = 'none'; updateMenuDisplay(); clearTimeout(hungerTimer); };
   window.resetProgress = function() { if(confirm('Начать с 1 уровня?')) { currentLevel = 1; sSet('mj_lvl_v11', 1); updateMenuDisplay(); } };
   window.showDaily = function() { window.renderDailyUI(); document.getElementById('daily-overlay').style.display='flex'; };
   window.claimDaily = function() { if(!canClaimToday) return; hints += rewards[streak].h; shuffles += rewards[streak].s; undos += rewards[streak].u; updateInventoryUI(); streak++; lastClaimDate = new Date().toDateString(); sSet('mj_st_v11', streak); sSet('mj_lc_v11', lastClaimDate); window.sfx.match(3); window.renderDailyUI(); triggerMascot('happy', 'Спасибо!'); resetHunger(); };
-
-  window.openHouse = function() {
-      document.getElementById('main-menu').classList.add('hidden');
-      document.getElementById('house-screen').style.display = 'flex';
-      renderHouse();
-  };
-  window.closeHouse = function() {
-      document.getElementById('house-screen').style.display = 'none';
-      document.getElementById('main-menu').classList.remove('hidden');
-      updateCoinsUI();
-  };
+  window.openHouse = function() { document.getElementById('main-menu').classList.add('hidden'); document.getElementById('house-screen').style.display = 'flex'; renderHouse(); };
+  window.closeHouse = function() { document.getElementById('house-screen').style.display = 'none'; document.getElementById('main-menu').classList.remove('hidden'); updateCoinsUI(); };
 
   function renderHouse() {
       updateCoinsUI();
+      shopItems.forEach(item => { let el = document.getElementById(item.id); if (el) { if (furniture[item.id]) el.classList.remove('item-hidden'); else el.classList.add('item-hidden'); } });
+      let shop = document.getElementById('shop-carousel'); shop.innerHTML = '';
       shopItems.forEach(item => {
-          let el = document.getElementById(item.id);
-          if (el) {
-              if (furniture[item.id]) el.classList.remove('item-hidden');
-              else el.classList.add('item-hidden');
-          }
-      });
-      let shop = document.getElementById('shop-carousel');
-      shop.innerHTML = '';
-      shopItems.forEach(item => {
-          let bought = !!furniture[item.id];
-          let card = document.createElement('div'); card.className = 'shop-card';
-          card.innerHTML = `
-            <div class="shop-card-icon">${item.icon}</div>
-            <div class="shop-card-title">${item.title}</div>
-            <button class="buy-btn" ${bought ? 'disabled' : ''} onclick="buyFurniture('${item.id}', ${item.price})">
-                ${bought ? 'Куплено ✓' : item.price + ' 🪙'}
-            </button>
-          `;
+          let bought = !!furniture[item.id]; let card = document.createElement('div'); card.className = 'shop-card';
+          card.innerHTML = `<div class="shop-card-icon">${item.icon}</div><div class="shop-card-title">${item.title}</div><button class="buy-btn" ${bought ? 'disabled' : ''} onclick="buyFurniture('${item.id}', ${item.price})">${bought ? 'Куплено ✓' : item.price + ' 🪙'}</button>`;
           shop.appendChild(card);
       });
   }
 
-  window.buyFurniture = function(id, price) {
-      initAudio();
-      if (coins >= price && !furniture[id]) {
-          coins -= price;
-          furniture[id] = true;
-          sSet('mj_furn_v1', JSON.stringify(furniture));
-          window.sfx.coin();
-          renderHouse();
-      } else {
-          window.sfx.error();
-      }
-  };
+  window.buyFurniture = function(id, price) { initAudio(); if (coins >= price && !furniture[id]) { coins -= price; furniture[id] = true; sSet('mj_furn_v1', JSON.stringify(furniture)); window.sfx.coin(); renderHouse(); } else { window.sfx.error(); } };
 
-  function countAvailablePairs() {
-    let freeTiles = tiles.filter(t => t.active && isFree(t)); let counts = {}; freeTiles.forEach(t => counts[t.type] = (counts[t.type] || 0) + 1);
-    let pairs = 0; for(let k in counts) pairs += Math.floor(counts[k] / 2); return pairs;
-  }
+  function countAvailablePairs() { let freeTiles = tiles.filter(t => t.active && isFree(t)); let counts = {}; freeTiles.forEach(t => counts[t.type] = (counts[t.type] || 0) + 1); let pairs = 0; for(let k in counts) pairs += Math.floor(counts[k] / 2); return pairs; }
 
+  // --- ПОЛНОСТЬЮ ОБНОВЛЕННАЯ ЛОГИКА ГЕНЕРАЦИИ (КОМПАКТНЫЕ УРОВНИ) ---
   function initLevel() {
     selectedId = null; currentCombo = 0; moveHistory = []; updateInventoryUI();
     let rng = getSeededRandom(currentLevel); let diff = Math.floor((currentLevel - 1) / 10); 
     let tmpl = shapes[Math.floor(rng() * shapes.length)];
     let baseMap = tmpl.getMap(); gridWidth = baseMap[0].length; gridHeight = baseMap.length; document.getElementById('level-display').innerText = `Ур: ${currentLevel}`;
+    
     let layout = [];
     for(let y=0; y<gridHeight; y++) { for(let x=0; x<gridWidth; x++) { if(baseMap[y][x] === '#') layout.push([x, y, 0]); } }
-    let maxZ = Math.min(2 + Math.floor(diff / 2), 5);
+    
+    // Пирамиды теперь строятся выше (чтобы компенсировать уменьшенную ширину)
+    let maxZ = Math.min(3 + Math.floor(diff / 2), 6);
+    
     for (let z = 1; z < maxZ; z++) {
       let layer = [];
       for(let y=0; y<gridHeight; y++) {
         for(let x=0; x<gridWidth; x++) {
-          let isFirstHalf = (tmpl.sym === 'mirror') ? (x < Math.floor(gridWidth / 2)) : (y < Math.floor(gridHeight / 2) || (gridHeight%2!==0 && y===Math.floor(gridHeight/2) && x < Math.floor(gridWidth/2)));
+          // Идеальная симметрия
+          let isFirstHalf = (tmpl.sym === 'mirror') ? (x < Math.ceil(gridWidth / 2)) : (y < Math.floor(gridHeight / 2) || (gridHeight%2!==0 && y===Math.floor(gridHeight/2) && x < Math.ceil(gridWidth/2)));
           let symX = (tmpl.sym === 'mirror') ? gridWidth - 1 - x : gridWidth - 1 - x;
           let symY = (tmpl.sym === 'mirror') ? y : gridHeight - 1 - y;
           if (isFirstHalf && layout.some(t=>t[0]===x&&t[1]===y&&t[2]===z-1) && layout.some(t=>t[0]===symX&&t[1]===symY&&t[2]===z-1) && rng() < (1.0 - z * 0.15)) {
@@ -833,7 +627,6 @@ html_code = """<!DOCTYPE html>
     } else {
         for(let i = 0; i < totalPairs; i++) types.push(avail[i % numF], avail[i % numF]);
     }
-    
     shuffleArray(types, rng);
 
     tiles = layout.map((pos, i) => ({ id: i, x: pos[0], y: pos[1], z: pos[2], type: types[i], active: true }));
@@ -847,6 +640,7 @@ html_code = """<!DOCTYPE html>
     return !(hasLeft && hasRight);
   }
 
+  // --- ОБНОВЛЕННЫЙ АЛГОРИТМ БЕЗ РАМОК ДЛЯ МАКСИМАЛЬНЫХ ФИШЕК ---
   function scaleBoard() {
     let view = document.getElementById('board-viewport'); 
     let cont = document.getElementById('mahjong-container');
@@ -856,15 +650,15 @@ html_code = """<!DOCTYPE html>
     let viewH = view.clientHeight; 
     if (viewW < 50 || viewH < 50) return;
     
-    let boardW = parseFloat(cont.style.width) || (gridWidth * 86 + 40); 
-    let boardH = parseFloat(cont.style.height) || (gridHeight * 104 + 50);
+    // Рассчитываем точные физические размеры пирамиды (без пустых отступов!)
+    let boardW = gridWidth * 86 + 34; 
+    let boardH = gridHeight * 104 + 33; 
     
-    // Увеличены лимиты масштабирования (поля по краям стали меньше)
     let scaleX = (viewW * 0.98) / boardW; 
     let scaleY = (viewH * 0.98) / boardH; 
     let s = Math.min(scaleX, scaleY);
     
-    if (s > 2.5) s = 2.5; 
+    if (s > 2.8) s = 2.8; 
     if (s < 0.2) s = 0.2; 
     
     let offsetX = (viewW - (boardW * s)) / 2;
@@ -873,23 +667,13 @@ html_code = """<!DOCTYPE html>
     cont.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${s})`;
   }
 
-  let resizeObserver = null;
-  if (typeof ResizeObserver !== 'undefined') { 
-    resizeObserver = new ResizeObserver(() => scaleBoard()); 
-  }
-  
-  window.addEventListener('resize', scaleBoard);
-  window.addEventListener('orientationchange', () => setTimeout(scaleBoard, 150));
-  window.addEventListener('load', () => { 
-    let v = document.getElementById('board-viewport'); 
-    if(v && resizeObserver) resizeObserver.observe(v); 
-    updateMenuDisplay(); 
-    updateSettingsUI(); 
-  });
+  let resizeObserver = null; if (typeof ResizeObserver !== 'undefined') { resizeObserver = new ResizeObserver(() => scaleBoard()); }
+  window.addEventListener('resize', scaleBoard); window.addEventListener('orientationchange', () => setTimeout(scaleBoard, 150));
+  window.addEventListener('load', () => { let v = document.getElementById('board-viewport'); if(v && resizeObserver) resizeObserver.observe(v); updateMenuDisplay(); updateSettingsUI(); });
 
   function render() {
     let cont = document.getElementById('mahjong-container'); cont.innerHTML = '';
-    cont.style.width = (gridWidth * 86 + 40) + 'px'; cont.style.height = (gridHeight * 104 + 50) + 'px';
+    cont.style.width = (gridWidth * 86 + 34) + 'px'; cont.style.height = (gridHeight * 104 + 33) + 'px';
     let sortedTiles = [...tiles].sort((a,b) => a.z - b.z);
     
     sortedTiles.forEach((t, index) => {
@@ -897,202 +681,59 @@ html_code = """<!DOCTYPE html>
       let el = document.createElement('div'); 
       el.className = 'tile dealing' + (t.type === 0 ? ' gold-tile' : ''); 
       el.id = 'tile-' + t.id;
-      el.style.left = (t.x * 86 + (t.z * 7) + 15) + 'px'; el.style.top = (t.y * 104 - (t.z * 9) + 25) + 'px';
+      // Новые координаты: фишки плотно прижаты к верхнему и левому краю, чтобы не было пустых мест
+      el.style.left = (t.x * 86 + (t.z * 5) + 10) + 'px'; 
+      el.style.top = (t.y * 104 - (t.z * 7) + 50) + 'px';
       el.style.zIndex = t.z * 10; el.innerHTML = svgs[t.type]; el.onclick = () => window.clickTile(t.id);
       el.style.animationDelay = (index * 12) + 'ms';
       cont.appendChild(el); setTimeout(() => { el.classList.remove('dealing'); el.style.animationDelay = '0s'; }, index * 12 + 400);
     });
-    updateState(); 
-    setTimeout(scaleBoard, 40); 
+    updateState(); setTimeout(scaleBoard, 40); 
   }
 
   function updateState() { 
-    tiles.forEach(t => { 
-      if (!t.active) return; 
-      let el = document.getElementById('tile-' + t.id); 
-      if(el) { el.classList.remove('blocked', 'hinted'); if (!isFree(t)) el.classList.add('blocked'); } 
-    }); 
-    
+    tiles.forEach(t => { if (!t.active) return; let el = document.getElementById('tile-' + t.id); if(el) { el.classList.remove('blocked', 'hinted'); if (!isFree(t)) el.classList.add('blocked'); } }); 
     let pairs = countAvailablePairs(); let movesEl = document.getElementById('moves-display');
     if(movesEl) {
-        movesEl.innerText = `Пар: ${pairs}`;
-        let activeCount = tiles.filter(t => t.active).length;
-        if(pairs === 0 && activeCount > 0) { 
-            movesEl.style.background = 'rgba(255,235,238,0.9)'; movesEl.style.color = '#c62828'; movesEl.style.borderColor = '#ef9a9a'; 
-            document.getElementById('shuffle-btn').style.animation = 'pulse 1s infinite alternate';
-            triggerMascot('sad', 'Тупик! Перемешай!');
-        } 
-        else { 
-            movesEl.style.background = '#ffffff'; movesEl.style.color = '#2e7d32'; movesEl.style.borderColor = '#a5d6a7'; 
-            document.getElementById('shuffle-btn').style.animation = 'none'; 
-        }
+        movesEl.innerText = `Пар: ${pairs}`; let activeCount = tiles.filter(t => t.active).length;
+        if(pairs === 0 && activeCount > 0) { movesEl.style.background = 'rgba(255,235,238,0.9)'; movesEl.style.color = '#c62828'; movesEl.style.borderColor = '#ef9a9a'; document.getElementById('shuffle-btn').style.animation = 'pulse 1s infinite alternate'; triggerMascot('sad', 'Тупик! Перемешай!'); } 
+        else { movesEl.style.background = '#ffffff'; movesEl.style.color = '#2e7d32'; movesEl.style.borderColor = '#a5d6a7'; document.getElementById('shuffle-btn').style.animation = 'none'; }
     }
   }
 
   function flashScreen() { const c = document.getElementById('board-viewport'); let f = document.createElement('div'); f.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.7); z-index:8900; pointer-events:none; transition: opacity 0.3s ease-out;'; c.appendChild(f); setTimeout(()=>{f.style.opacity='0';},50); setTimeout(()=>f.remove(), 400); }
-  function launchCelebration() { 
-      const c = ['#ff5252','#ffeb3b','#66bb6a','#42a5f5','#ab47bc','#ffa726','#26a69a','#ec407a']; const cont = document.getElementById('board-viewport'); flashScreen(); 
-      for(let i=0; i<130; i++) { 
-          let conf = document.createElement('div'); conf.style.cssText = `position:absolute; left:${Math.random()*100}%; top:-10%; width:${Math.random()*8+5}px; height:${Math.random()*12+5}px; background-color:${c[Math.floor(Math.random()*c.length)]}; z-index:9000; border-radius:${Math.random()>0.5?'50%':'3px'}; animation:confettiFall ${Math.random()*2+2}s linear forwards; animation-delay:${Math.random()*1.1}s; box-shadow:0 2px 4px rgba(0,0,0,0.3);`; 
-          cont.appendChild(conf); setTimeout(()=>conf.remove(),3600); 
-      } 
-  }
+  function launchCelebration() { const c = ['#ff5252','#ffeb3b','#66bb6a','#42a5f5','#ab47bc','#ffa726','#26a69a','#ec407a']; const cont = document.getElementById('board-viewport'); flashScreen(); for(let i=0; i<130; i++) { let conf = document.createElement('div'); conf.style.cssText = `position:absolute; left:${Math.random()*100}%; top:-10%; width:${Math.random()*8+5}px; height:${Math.random()*12+5}px; background-color:${c[Math.floor(Math.random()*c.length)]}; z-index:9000; border-radius:${Math.random()>0.5?'50%':'3px'}; animation:confettiFall ${Math.random()*2+2}s linear forwards; animation-delay:${Math.random()*1.1}s; box-shadow:0 2px 4px rgba(0,0,0,0.3);`; cont.appendChild(conf); setTimeout(()=>conf.remove(),3600); } }
 
-  window.pokeMascot = function() { 
-      initAudio(); window.sfx.click(); resetHunger(); 
-      currentScore += 10; document.getElementById('score-display').innerText = `Очки: ${currentScore}`;
-      let mRect = document.getElementById('mascot-wrapper').getBoundingClientRect();
-      showFloatingScore(mRect, mRect, '+10');
-      triggerMascot('happy', "Люблю тебя! 💖");
-      
-      let drop = document.createElement('div');
-      drop.innerText = '💖'; drop.style.position = 'absolute'; drop.style.fontSize = '24px'; drop.style.zIndex = '6000';
-      drop.style.left = '50%'; drop.style.top = '0'; document.getElementById('mascot-wrapper').appendChild(drop);
-      drop.animate([
-          { transform: 'translate(-50%, 0) scale(1)', opacity: 1 },
-          { transform: `translate(-50%, -80px) scale(1.6)`, opacity: 0 }
-      ], { duration: 850 }).onfinish = () => drop.remove();
-  };
+  window.pokeMascot = function() { initAudio(); window.sfx.click(); resetHunger(); currentScore += 10; document.getElementById('score-display').innerText = `Очки: ${currentScore}`; let mRect = document.getElementById('mascot-wrapper').getBoundingClientRect(); showFloatingScore(mRect, mRect, '+10'); triggerMascot('happy', "Люблю тебя! 💖"); let drop = document.createElement('div'); drop.innerText = '💖'; drop.style.position = 'absolute'; drop.style.fontSize = '24px'; drop.style.zIndex = '6000'; drop.style.left = '50%'; drop.style.top = '0'; document.getElementById('mascot-wrapper').appendChild(drop); drop.animate([{ transform: 'translate(-50%, 0) scale(1)', opacity: 1 }, { transform: `translate(-50%, -80px) scale(1.6)`, opacity: 0 }], { duration: 850 }).onfinish = () => drop.remove(); };
   
   window.clickTile = function(id) {
-    initAudio(); resetHunger(); 
-    let tile = tiles.find(t => t.id === id); let el = document.getElementById('tile-' + id);
+    initAudio(); resetHunger(); let tile = tiles.find(t => t.id === id); let el = document.getElementById('tile-' + id);
     if (!tile || !tile.active || !isFree(tile)) { window.sfx.error(); return; }
-    
     if (selectedId === null) { selectedId = id; el.classList.add('selected'); window.sfx.click(); }
     else if (selectedId === id) { selectedId = null; el.classList.remove('selected'); window.sfx.click(); }
     else {
       let selTile = tiles.find(t => t.id === selectedId); let selEl = document.getElementById('tile-' + selectedId);
       if (!selTile || !selTile.active) { selectedId = null; if(selEl) selEl.classList.remove('selected'); return; }
-
       if (selTile.type === tile.type) {
-        selTile.active = false; tile.active = false;
-        selEl.classList.remove('selected'); el.classList.remove('selected');
-        selEl.style.pointerEvents = 'none'; el.style.pointerEvents = 'none';
-        selEl.style.zIndex = 5000; el.style.zIndex = 5000;
-        
-        let l1 = parseFloat(selEl.style.left), t1 = parseFloat(selEl.style.top);
-        let l2 = parseFloat(el.style.left), t2 = parseFloat(el.style.top);
-        let mx = (l1 + l2) / 2, my = (t1 + t2) / 2;
-        let r1 = selEl.getBoundingClientRect(); let r2 = el.getBoundingClientRect();
-        
-        selEl.animate([
-            { transform: 'translate(0px, 0px) scale(1) rotate(0deg)', opacity: 1, filter: 'brightness(1)' },
-            { transform: `translate(${mx - l1}px, ${my - t1}px) scale(1.15) rotate(10deg)`, opacity: 1, filter: 'brightness(1.4) drop-shadow(0 0 15px #fff)', offset: 0.5 },
-            { transform: `translate(${mx - l1}px, ${my - t1}px) scale(0) rotate(18deg)`, opacity: 0, filter: 'brightness(1.8)' }
-        ], {duration: 320, easing: 'ease-in-out', fill: 'forwards'});
-
-        el.animate([
-            { transform: 'translate(0px, 0px) scale(1) rotate(0deg)', opacity: 1, filter: 'brightness(1)' },
-            { transform: `translate(${mx - l2}px, ${my - t2}px) scale(1.15) rotate(-10deg)`, opacity: 1, filter: 'brightness(1.4) drop-shadow(0 0 15px #fff)', offset: 0.5 },
-            { transform: `translate(${mx - l2}px, ${my - t2}px) scale(0) rotate(-18deg)`, opacity: 0, filter: 'brightness(1.8)' }
-        ], {duration: 320, easing: 'ease-in-out', fill: 'forwards'});
-        
-        moveHistory.push([selTile.id, tile.id]); 
-        handleCombo(tile.type, r1, r2); 
-        selectedId = null; 
-        setTimeout(() => { updateState(); window.checkWin(); }, 320);
+        selTile.active = false; tile.active = false; selEl.classList.remove('selected'); el.classList.remove('selected'); selEl.style.pointerEvents = 'none'; el.style.pointerEvents = 'none'; selEl.style.zIndex = 5000; el.style.zIndex = 5000;
+        let l1 = parseFloat(selEl.style.left), t1 = parseFloat(selEl.style.top); let l2 = parseFloat(el.style.left), t2 = parseFloat(el.style.top);
+        let mx = (l1 + l2) / 2, my = (t1 + t2) / 2; let r1 = selEl.getBoundingClientRect(); let r2 = el.getBoundingClientRect();
+        selEl.animate([{ transform: 'translate(0px, 0px) scale(1) rotate(0deg)', opacity: 1, filter: 'brightness(1)' }, { transform: `translate(${mx - l1}px, ${my - t1}px) scale(1.15) rotate(10deg)`, opacity: 1, filter: 'brightness(1.4) drop-shadow(0 0 15px #fff)', offset: 0.5 }, { transform: `translate(${mx - l1}px, ${my - t1}px) scale(0) rotate(18deg)`, opacity: 0, filter: 'brightness(1.8)' }], {duration: 320, easing: 'ease-in-out', fill: 'forwards'});
+        el.animate([{ transform: 'translate(0px, 0px) scale(1) rotate(0deg)', opacity: 1, filter: 'brightness(1)' }, { transform: `translate(${mx - l2}px, ${my - t2}px) scale(1.15) rotate(-10deg)`, opacity: 1, filter: 'brightness(1.4) drop-shadow(0 0 15px #fff)', offset: 0.5 }, { transform: `translate(${mx - l2}px, ${my - t2}px) scale(0) rotate(-18deg)`, opacity: 0, filter: 'brightness(1.8)' }], {duration: 320, easing: 'ease-in-out', fill: 'forwards'});
+        moveHistory.push([selTile.id, tile.id]); handleCombo(tile.type, r1, r2); selectedId = null; setTimeout(() => { updateState(); window.checkWin(); }, 320);
       } else { selEl.classList.remove('selected'); selectedId = id; el.classList.add('selected'); window.sfx.click(); }
     }
   };
 
-  window.useUndo = function() {
-    resetHunger(); if(moveHistory.length === 0) { triggerMascot('sad', 'Нечего отменять!'); window.sfx.error(); return; }
-    if(undos <= 0) { triggerMascot('sad', 'Нет отмен!'); window.sfx.error(); return; }
-    undos--; updateInventoryUI(); let lastPair = moveHistory.pop();
-    let t1 = tiles.find(t => t.id === lastPair[0]); let t2 = tiles.find(t => t.id === lastPair[1]);
-    if(t1 && t2) { 
-        t1.active = true; t2.active = true; 
-        let el1 = document.getElementById('tile-' + t1.id); let el2 = document.getElementById('tile-' + t2.id); 
-        if(el1) { el1.getAnimations().forEach(a => a.cancel()); el1.style.pointerEvents = 'auto'; el1.style.zIndex = t1.z * 10; }
-        if(el2) { el2.getAnimations().forEach(a => a.cancel()); el2.style.pointerEvents = 'auto'; el2.style.zIndex = t2.z * 10; }
-    }
-    window.sfx.undo(); triggerMascot('happy', 'Вернули!'); selectedId = null; setTimeout(updateState, 10);
-  };
+  window.useUndo = function() { resetHunger(); if(moveHistory.length === 0) { triggerMascot('sad', 'Нечего отменять!'); window.sfx.error(); return; } if(undos <= 0) { triggerMascot('sad', 'Нет отмен!'); window.sfx.error(); return; } undos--; updateInventoryUI(); let lastPair = moveHistory.pop(); let t1 = tiles.find(t => t.id === lastPair[0]); let t2 = tiles.find(t => t.id === lastPair[1]); if(t1 && t2) { t1.active = true; t2.active = true; let el1 = document.getElementById('tile-' + t1.id); let el2 = document.getElementById('tile-' + t2.id); if(el1) { el1.getAnimations().forEach(a => a.cancel()); el1.style.pointerEvents = 'auto'; el1.style.zIndex = t1.z * 10; } if(el2) { el2.getAnimations().forEach(a => a.cancel()); el2.style.pointerEvents = 'auto'; el2.style.zIndex = t2.z * 10; } } window.sfx.undo(); triggerMascot('happy', 'Вернули!'); selectedId = null; setTimeout(updateState, 10); };
+  window.useHint = function() { resetHunger(); if (hints <= 0) { triggerMascot('sad', 'Нет подсказок!'); window.sfx.error(); return; } let fT = tiles.filter(t => t.active && isFree(t)); for(let i=0; i<fT.length; i++) { for(let j=i+1; j<fT.length; j++) { if(fT[i].type === fT[j].type) { document.getElementById('tile-'+fT[i].id).classList.add('hinted'); document.getElementById('tile-'+fT[j].id).classList.add('hinted'); hints--; updateInventoryUI(); triggerMascot('happy', 'Смотри сюда!'); window.sfx.hint(); return; } } } triggerMascot('sad', 'Нет пар! Перемешай!'); window.sfx.error(); };
+  window.useShuffle = function() { resetHunger(); if (shuffles <= 0) { triggerMascot('sad', 'Пусто!'); window.sfx.error(); return; } shuffles--; updateInventoryUI(); let activeTiles = tiles.filter(t => t.active); let types = activeTiles.map(t => t.type); shuffleArray(types, Math.random); activeTiles.forEach((t, i) => t.type = types[i]); makeSolvable(activeTiles, Math.random); fixVerticalDuplicates(activeTiles, Math.random); selectedId = null; render(); triggerMascot('happy', 'Вжух!'); window.sfx.shuffle(); };
   
-  window.useHint = function() {
-    resetHunger(); if (hints <= 0) { triggerMascot('sad', 'Нет подсказок!'); window.sfx.error(); return; }
-    let fT = tiles.filter(t => t.active && isFree(t));
-    for(let i=0; i<fT.length; i++) {
-        for(let j=i+1; j<fT.length; j++) {
-            if(fT[i].type === fT[j].type) { document.getElementById('tile-'+fT[i].id).classList.add('hinted'); document.getElementById('tile-'+fT[j].id).classList.add('hinted'); hints--; updateInventoryUI(); triggerMascot('happy', 'Смотри сюда!'); window.sfx.hint(); return; }
-        }
-    }
-    triggerMascot('sad', 'Нет пар! Перемешай!'); window.sfx.error();
-  };
+  window.checkWin = function() { if (tiles.every(t => !t.active)) { clearTimeout(hungerTimer); coins += 10; updateCoinsUI(); window.sfx.win(); triggerMascot('happy', 'СУПЕР ПОБЕДА! +10 🪙'); launchCelebration(); setTimeout(() => { let stars = currentScore >= 1400 ? "⭐⭐⭐" : (currentScore >= 700 ? "⭐⭐" : "⭐"); document.getElementById('victory-stars').innerText = stars; document.getElementById('victory-score-text').innerText = `Набрано очков: ${currentScore} (+10 🪙)`; document.getElementById('victory-overlay').style.display = 'flex'; }, 1300); } };
+  window.nextLevel = function() { document.getElementById('victory-overlay').style.display = 'none'; currentLevel++; sSet('mj_lvl_v11', currentLevel); updateMenuDisplay(); initLevel(); };
   
-  window.useShuffle = function() { 
-      resetHunger(); if (shuffles <= 0) { triggerMascot('sad', 'Пусто!'); window.sfx.error(); return; } 
-      shuffles--; updateInventoryUI(); let activeTiles = tiles.filter(t => t.active);
-      let types = activeTiles.map(t => t.type); shuffleArray(types, Math.random); activeTiles.forEach((t, i) => t.type = types[i]);
-      makeSolvable(activeTiles, Math.random); fixVerticalDuplicates(activeTiles, Math.random);
-      selectedId = null; render(); triggerMascot('happy', 'Вжух!'); window.sfx.shuffle();
-  };
-  
-  window.checkWin = function() {
-    if (tiles.every(t => !t.active)) {
-      clearTimeout(hungerTimer); 
-      coins += 10; // Награда за победу на уровне
-      updateCoinsUI();
-      window.sfx.win(); triggerMascot('happy', 'СУПЕР ПОБЕДА! +10 🪙'); launchCelebration();
-      setTimeout(() => {
-        let stars = currentScore >= 1400 ? "⭐⭐⭐" : (currentScore >= 700 ? "⭐⭐" : "⭐");
-        document.getElementById('victory-stars').innerText = stars;
-        document.getElementById('victory-score-text').innerText = `Набрано очков: ${currentScore} (+10 🪙)`;
-        document.getElementById('victory-overlay').style.display = 'flex';
-      }, 1300);
-    }
-  };
-
-  window.nextLevel = function() { 
-    document.getElementById('victory-overlay').style.display = 'none'; 
-    currentLevel++; 
-    sSet('mj_lvl_v11', currentLevel); 
-    updateMenuDisplay(); 
-    initLevel(); 
-  };
-  
-  window.showHintAd = function() {
-    clearTimeout(hungerTimer); 
-    if (vkPlayApp) { 
-      try { 
-        vkPlayApp.showAds({ interstitial: false, rewarded: true, callbacks: { 
-          onReward: ()=>{ hints+=2; updateInventoryUI(); triggerMascot('happy', 'Ура, бонусы!'); }, 
-          onClose: resetHunger, onError: ()=>{ triggerMascot('sad', 'Нет рекламы :('); resetHunger(); } 
-        } }); 
-      } catch(e) {} 
-    } else { 
-      let ov = document.getElementById('ad-overlay'); let t = document.getElementById('ad-timer'); 
-      ov.style.display = 'flex'; let tl = 3; t.innerText = tl; 
-      let int = setInterval(() => { 
-        tl--; t.innerText = tl; 
-        if (tl <= 0) { 
-          clearInterval(int); ov.style.display = 'none'; hints += 2; updateInventoryUI(); triggerMascot('happy', 'Бонусы!'); resetHunger(); 
-        } 
-      }, 1000); 
-    }
-  };
-  
-  window.showShuffleAd = function() {
-    clearTimeout(hungerTimer); 
-    if (vkPlayApp) { 
-      try { 
-        vkPlayApp.showAds({ interstitial: false, rewarded: true, callbacks: { 
-          onReward: ()=>{ shuffles+=1; updateInventoryUI(); triggerMascot('happy', 'Перемешивание!'); }, 
-          onClose: resetHunger, onError: ()=>{ triggerMascot('sad', 'Нет рекламы :('); resetHunger(); } 
-        } }); 
-      } catch(e) {} 
-    } else { 
-      let ov = document.getElementById('ad-overlay'); let t = document.getElementById('ad-timer'); 
-      ov.style.display = 'flex'; let tl = 3; t.innerText = tl; 
-      let int = setInterval(() => { 
-        tl--; t.innerText = tl; 
-        if (tl <= 0) { 
-          clearInterval(int); ov.style.display = 'none'; shuffles += 1; updateInventoryUI(); triggerMascot('happy', 'Перемешивание получено!'); resetHunger(); 
-        } 
-      }, 1000); 
-    }
-  };
+  window.showHintAd = function() { clearTimeout(hungerTimer); if (vkPlayApp) { try { vkPlayApp.showAds({ interstitial: false, rewarded: true, callbacks: { onReward: ()=>{ hints+=2; updateInventoryUI(); triggerMascot('happy', 'Ура, бонусы!'); }, onClose: resetHunger, onError: ()=>{ triggerMascot('sad', 'Нет рекламы :('); resetHunger(); } } }); } catch(e) {} } else { let ov = document.getElementById('ad-overlay'); let t = document.getElementById('ad-timer'); ov.style.display = 'flex'; let tl = 3; t.innerText = tl; let int = setInterval(() => { tl--; t.innerText = tl; if (tl <= 0) { clearInterval(int); ov.style.display = 'none'; hints += 2; updateInventoryUI(); triggerMascot('happy', 'Бонусы!'); resetHunger(); } }, 1000); } };
+  window.showShuffleAd = function() { clearTimeout(hungerTimer); if (vkPlayApp) { try { vkPlayApp.showAds({ interstitial: false, rewarded: true, callbacks: { onReward: ()=>{ shuffles+=1; updateInventoryUI(); triggerMascot('happy', 'Перемешивание!'); }, onClose: resetHunger, onError: ()=>{ triggerMascot('sad', 'Нет рекламы :('); resetHunger(); } } }); } catch(e) {} } else { let ov = document.getElementById('ad-overlay'); let t = document.getElementById('ad-timer'); ov.style.display = 'flex'; let tl = 3; t.innerText = tl; let int = setInterval(() => { tl--; t.innerText = tl; if (tl <= 0) { clearInterval(int); ov.style.display = 'none'; shuffles += 1; updateInventoryUI(); triggerMascot('happy', 'Перемешивание получено!'); resetHunger(); } }, 1000); } };
 </script>
 </body>
 </html>"""
