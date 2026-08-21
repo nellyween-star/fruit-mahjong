@@ -43,6 +43,18 @@
     padding: env(safe-area-inset-top, 4px) env(safe-area-inset-right, 4px) env(safe-area-inset-bottom, 4px) env(safe-area-inset-left, 4px);
   }
   
+  /* --- Чистая CSS Монетка (Работает на любых устройствах) --- */
+  .coin-ico {
+    display: inline-block;
+    width: 1.1em; height: 1.1em;
+    background: radial-gradient(circle at 30% 30%, #fff9c4 0%, #ffca28 50%, #f57f17 100%);
+    border: 0.1em solid #e65100;
+    border-radius: 50%;
+    box-shadow: inset 0 0.1em 0.1em rgba(255,255,255,0.8), 0 0.1em 0.2em rgba(0,0,0,0.3);
+    vertical-align: middle;
+    margin-top: -0.1em;
+  }
+
   .bg-bubble {
     position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 70%);
     pointer-events: none; z-index: 0; animation: floatUpBackground linear infinite;
@@ -211,7 +223,7 @@
     <h1>Фруктовый<br>Маджонг</h1>
     <div class="top-stats-bar">
       <div id="menu-level" style="margin-bottom:0;">Уровень: 1</div>
-      <div class="coin-badge">🪙 <span id="menu-coins">0</span></div>
+      <div class="coin-badge"><div class="coin-ico"></div> <span id="menu-coins">0</span></div>
     </div>
     <button class="menu-btn" onclick="startGame()">▶ ИГРАТЬ</button>
     <button class="menu-btn btn-house-menu" onclick="openHouse()">🏡 Домик Юми</button>
@@ -221,7 +233,7 @@
   
   <div id="house-screen">
     <div id="house-header">
-      <div class="coin-badge" style="font-size:18px;">🪙 <span id="house-coins">0</span></div>
+      <div class="coin-badge" style="font-size:18px;"><div class="coin-ico"></div> <span id="house-coins">0</span></div>
       <button class="btn" style="background:#ba68c8; box-shadow:0 3px 0 #7b1fa2;" onclick="closeHouse()">◀ Назад</button>
     </div>
     <div id="room-stage">
@@ -247,7 +259,7 @@
   <div id="game-ui" class="hidden">
     <div id="header-row">
       <div id="level-display" class="stats-badge">Ур: 1</div>
-      <div class="stats-badge" style="color:#ff8f00; border-color:#ffe082;">🪙 <span id="game-coins">0</span></div>
+      <div class="stats-badge" style="color:#ff8f00; border-color:#ffe082; display:flex; align-items:center; gap:4px;"><div class="coin-ico"></div> <span id="game-coins">0</span></div>
       <div id="moves-display" class="stats-badge" style="color:#2e7d32; border-color:#a5d6a7;">Пар: 0</div>
       <div id="score-display" class="stats-badge" style="color:#f57f17; border-color:#ffe082;">Очки: 0</div>
       <div id="ui-panel">
@@ -480,7 +492,7 @@
       let x = ((r1.left + r2.left) / 2) - vp.left + 42; let y = ((r1.top + r2.top) / 2) - vp.top;
       let floatEl = document.createElement('div'); floatEl.className = 'floating-score'; 
       if(isGold) { floatEl.style.webkitTextStroke = '2px #b78103'; floatEl.style.color = '#ffd700'; }
-      floatEl.innerText = text; floatEl.style.left = x + 'px'; floatEl.style.top = y + 'px';
+      floatEl.innerHTML = text; floatEl.style.left = x + 'px'; floatEl.style.top = y + 'px';
       document.getElementById('board-viewport').appendChild(floatEl); setTimeout(() => floatEl.remove(), 1000);
   }
 
@@ -490,7 +502,9 @@
     
     let isGold = (tileType === 0);
     if(isGold) {
-        coins += 25; updateCoinsUI(); window.sfx.coin(); showFloatingScore(rect1, rect2, '+25 🪙', true); triggerMascot('happy', 'Золото! В домик! 🪙');
+        coins += 25; updateCoinsUI(); window.sfx.coin(); 
+        showFloatingScore(rect1, rect2, '+25 <div class="coin-ico"></div>', true); 
+        triggerMascot('happy', 'Золото! <div class="coin-ico"></div>');
     } else {
         window.sfx.match(currentCombo); let earned = 100 * currentCombo; currentScore += earned; 
         document.getElementById('score-display').innerText = `Очки: ${currentScore}`; showFloatingScore(rect1, rect2, '+' + earned);
@@ -566,7 +580,7 @@
       let shop = document.getElementById('shop-carousel'); shop.innerHTML = '';
       shopItems.forEach(item => {
           let bought = !!furniture[item.id]; let card = document.createElement('div'); card.className = 'shop-card';
-          card.innerHTML = `<div class="shop-card-icon">${item.icon}</div><div class="shop-card-title">${item.title}</div><button class="buy-btn" ${bought ? 'disabled' : ''} onclick="buyFurniture('${item.id}', ${item.price})">${bought ? 'Куплено ✓' : item.price + ' 🪙'}</button>`;
+          card.innerHTML = `<div class="shop-card-icon">${item.icon}</div><div class="shop-card-title">${item.title}</div><button class="buy-btn" ${bought ? 'disabled' : ''} onclick="buyFurniture('${item.id}', ${item.price})">${bought ? 'Куплено ✓' : item.price + ' <div class="coin-ico"></div>'}</button>`;
           shop.appendChild(card);
       });
   }
@@ -715,7 +729,7 @@
   window.useHint = function() { resetHunger(); if (hints <= 0) { triggerMascot('sad', 'Нет подсказок!'); window.sfx.error(); return; } let fT = tiles.filter(t => t.active && isFree(t)); for(let i=0; i<fT.length; i++) { for(let j=i+1; j<fT.length; j++) { if(fT[i].type === fT[j].type) { document.getElementById('tile-'+fT[i].id).classList.add('hinted'); document.getElementById('tile-'+fT[j].id).classList.add('hinted'); hints--; updateInventoryUI(); triggerMascot('happy', 'Смотри сюда!'); window.sfx.hint(); return; } } } triggerMascot('sad', 'Нет пар! Перемешай!'); window.sfx.error(); };
   window.useShuffle = function() { resetHunger(); if (shuffles <= 0) { triggerMascot('sad', 'Пусто!'); window.sfx.error(); return; } shuffles--; updateInventoryUI(); let activeTiles = tiles.filter(t => t.active); let types = activeTiles.map(t => t.type); shuffleArray(types, Math.random); activeTiles.forEach((t, i) => t.type = types[i]); makeSolvable(activeTiles, Math.random); fixVerticalDuplicates(activeTiles, Math.random); selectedId = null; render(); triggerMascot('happy', 'Вжух!'); window.sfx.shuffle(); };
   
-  window.checkWin = function() { if (tiles.every(t => !t.active)) { clearTimeout(hungerTimer); coins += 10; updateCoinsUI(); window.sfx.win(); triggerMascot('happy', 'СУПЕР ПОБЕДА! +10 🪙'); launchCelebration(); setTimeout(() => { let stars = currentScore >= 1400 ? "⭐⭐⭐" : (currentScore >= 700 ? "⭐⭐" : "⭐"); document.getElementById('victory-stars').innerText = stars; document.getElementById('victory-score-text').innerText = `Набрано очков: ${currentScore} (+10 🪙)`; document.getElementById('victory-overlay').style.display = 'flex'; }, 1300); } };
+  window.checkWin = function() { if (tiles.every(t => !t.active)) { clearTimeout(hungerTimer); coins += 10; updateCoinsUI(); window.sfx.win(); triggerMascot('happy', 'ПОБЕДА! +10 <div class="coin-ico"></div>'); launchCelebration(); setTimeout(() => { let stars = currentScore >= 1400 ? "⭐⭐⭐" : (currentScore >= 700 ? "⭐⭐" : "⭐"); document.getElementById('victory-stars').innerText = stars; document.getElementById('victory-score-text').innerHTML = `Набрано очков: ${currentScore} (+10 <div class="coin-ico"></div>)`; document.getElementById('victory-overlay').style.display = 'flex'; }, 1300); } };
   window.nextLevel = function() { document.getElementById('victory-overlay').style.display = 'none'; currentLevel++; sSet('mj_lvl_v11', currentLevel); updateMenuDisplay(); initLevel(); };
   
   window.showHintAd = function() { clearTimeout(hungerTimer); if (vkPlayApp) { try { vkPlayApp.showAds({ interstitial: false, rewarded: true, callbacks: { onReward: ()=>{ hints+=2; updateInventoryUI(); triggerMascot('happy', 'Ура, бонусы!'); }, onClose: resetHunger, onError: ()=>{ triggerMascot('sad', 'Нет рекламы :('); resetHunger(); } } }); } catch(e) {} } else { let ov = document.getElementById('ad-overlay'); let t = document.getElementById('ad-timer'); ov.style.display = 'flex'; let tl = 3; t.innerText = tl; let int = setInterval(() => { tl--; t.innerText = tl; if (tl <= 0) { clearInterval(int); ov.style.display = 'none'; hints += 2; updateInventoryUI(); triggerMascot('happy', 'Бонусы!'); resetHunger(); } }, 1000); } };
